@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JAMBFocus – Your #1 JAMB Prep Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --green:#16a34a;
+    --green-dark:#15803d;
+    --green-light:#f0fdf4;
+    --green-mid:#dcfce7;
+    --text:#111827;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --bg:#ffffff;
+    --bg2:#f9fafb;
+    --red:#dc2626;
+    --radius:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:#fff;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 6%;height:62px;
+  }
+  .logo{font-size:1.3rem;font-weight:800;color:var(--green);text-decoration:none;}
+  .logo span{color:var(--text);}
+  .nav-links{display:flex;gap:4px;list-style:none;}
+  .nav-links a{
+    color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;
+    padding:6px 14px;border-radius:6px;transition:.15s;
+  }
+  .nav-links a:hover{color:var(--green);background:var(--green-light);}
+  .nav-cta{
+    background:var(--green);color:#fff;border:none;
+    padding:8px 18px;border-radius:6px;font-weight:700;font-size:.85rem;
+    cursor:pointer;text-decoration:none;transition:.15s;
+  }
+  .nav-cta:hover{background:var(--green-dark);}
+
+  /* HERO */
+  .hero{
+    background:var(--green-light);border-bottom:1px solid var(--green-mid);
+    padding:72px 6% 64px;text-align:center;
+  }
+  .hero-badge{
+    display:inline-block;background:var(--green-mid);color:var(--green-dark);
+    font-size:.75rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+    padding:4px 12px;border-radius:20px;margin-bottom:20px;
+  }
+  .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;margin-bottom:16px;}
+  .hero h1 span{color:var(--green);}
+  .hero p{color:var(--muted);font-size:1.05rem;line-height:1.7;max-width:500px;margin:0 auto 32px;}
+  .hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn-green{
+    background:var(--green);color:#fff;border:none;
+    padding:12px 26px;border-radius:7px;font-weight:700;font-size:.95rem;
+    cursor:pointer;text-decoration:none;transition:.15s;
+  }
+  .btn-green:hover{background:var(--green-dark);}
+  .btn-white{
+    background:#fff;color:var(--text);border:1px solid var(--border);
+    padding:12px 26px;border-radius:7px;font-weight:600;font-size:.95rem;
+    cursor:pointer;text-decoration:none;transition:.15s;
+  }
+  .btn-white:hover{border-color:var(--green);color:var(--green);}
+  .hero-stats{
+    display:flex;gap:40px;justify-content:center;flex-wrap:wrap;
+    margin-top:48px;padding-top:36px;border-top:1px solid var(--green-mid);
+  }
+  .stat-num{font-size:1.7rem;font-weight:800;color:var(--green);}
+  .stat-label{color:var(--muted);font-size:.8rem;margin-top:2px;}
+
+  /* SECTIONS */
+  section{padding:64px 6%;}
+  .section-header{text-align:center;margin-bottom:40px;}
+  .section-label{
+    display:inline-block;color:var(--green);font-size:.75rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;
+  }
+  .section-title{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;color:var(--text);}
+  .section-sub{color:var(--muted);margin-top:8px;font-size:.95rem;}
+
+  /* GIVEAWAY */
+  .giveaway-section{background:var(--bg2);}
+  .giveaway-card{
+    max-width:620px;margin:0 auto;
+    background:#fff;border:2px solid var(--green);
+    border-radius:14px;padding:36px;
+  }
+  .giveaway-card .icon{font-size:2.4rem;margin-bottom:12px;display:block;}
+  .giveaway-card h2{font-size:1.4rem;font-weight:800;color:var(--text);margin-bottom:6px;}
+  .giveaway-card .desc{color:var(--muted);font-size:.92rem;line-height:1.65;margin-bottom:22px;}
+  .q-box{
+    background:var(--green-light);border:1px solid var(--green-mid);
+    border-radius:8px;padding:18px 20px;margin-bottom:22px;
+  }
+  .q-box .qlabel{color:var(--green);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
+  .q-box .qtext{font-size:1rem;font-weight:600;color:var(--text);line-height:1.5;}
+  .answer-input{
+    width:100%;border:1px solid var(--border);border-radius:7px;
+    padding:12px 14px;font-size:.95rem;color:var(--text);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    margin-bottom:14px;outline:none;transition:.15s;background:#fff;
+  }
+  .answer-input:focus{border-color:var(--green);}
+  .btn-submit{
+    width:100%;background:var(--green);color:#fff;border:none;
+    padding:13px;border-radius:7px;font-weight:700;font-size:.95rem;cursor:pointer;transition:.15s;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .btn-submit:hover{background:var(--green-dark);}
+  .giveaway-note{color:var(--muted);font-size:.78rem;text-align:center;margin-top:12px;}
+  .giveaway-note strong{color:var(--green);}
+
+  /* QUIZ */
+  .quiz-section{background:#fff;}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:32px;}
+  .tab-btn{
+    background:#fff;border:1px solid var(--border);color:var(--muted);
+    padding:7px 18px;border-radius:6px;font-size:.85rem;font-weight:600;
+    cursor:pointer;transition:.15s;font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .tab-btn:hover{border-color:var(--green);color:var(--green);}
+  .tab-btn.active{background:var(--green);color:#fff;border-color:var(--green);}
+  .quiz-container{max-width:660px;margin:0 auto;}
+  .quiz-card{
+    background:#fff;border:1px solid var(--border);
+    border-radius:var(--radius);padding:24px;margin-bottom:16px;
+  }
+  .q-num{color:var(--green);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;}
+  .q-body{font-size:1rem;font-weight:600;line-height:1.55;margin-bottom:18px;}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .option{
+    display:flex;align-items:center;gap:10px;
+    border:1px solid var(--border);border-radius:7px;
+    padding:10px 14px;cursor:pointer;transition:.15s;
+  }
+  .option:hover{border-color:var(--green);background:var(--green-light);}
+  .option input[type=radio]{accent-color:var(--green);width:15px;height:15px;flex-shrink:0;}
+  .option label{cursor:pointer;font-size:.92rem;}
+  .check-btn{
+    margin-top:14px;background:var(--green);color:#fff;border:none;
+    padding:9px 22px;border-radius:6px;font-weight:700;font-size:.88rem;
+    cursor:pointer;transition:.15s;font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .check-btn:hover{background:var(--green-dark);}
+  .result-msg{
+    margin-top:12px;padding:10px 14px;border-radius:7px;
+    font-size:.9rem;font-weight:600;display:none;line-height:1.5;
+  }
+  .result-msg.correct{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;}
+  .result-msg.wrong{background:#fef2f2;border:1px solid #fecaca;color:var(--red);}
+
+  /* NEWS */
+  .news-section{background:var(--bg2);}
+  .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;}
+  .news-card{
+    background:#fff;border:1px solid var(--border);
+    border-radius:12px;overflow:hidden;transition:.2s;
+    display:flex;flex-direction:column;
+  }
+  .news-card:hover{border-color:var(--green);box-shadow:0 4px 20px rgba(22,163,74,.1);transform:translateY(-2px);}
+  .news-img{
+    width:100%;height:180px;object-fit:cover;display:block;
+    background:var(--green-mid);
+  }
+  .news-img-placeholder{
+    width:100%;height:180px;
+    background:linear-gradient(135deg,var(--green-mid),#bbf7d0);
+    display:flex;align-items:center;justify-content:center;
+    font-size:3rem;
+  }
+  .news-body{padding:18px;flex:1;display:flex;flex-direction:column;}
+  .news-tag{
+    display:inline-block;background:var(--green-mid);color:var(--green-dark);
+    font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+    padding:3px 9px;border-radius:20px;margin-bottom:10px;width:fit-content;
+  }
+  .news-tag.edu{background:#eff6ff;color:#1d4ed8;}
+  .news-tag.tip{background:#fefce8;color:#92400e;}
+  .news-card h3{font-size:.97rem;font-weight:700;line-height:1.45;color:var(--text);margin-bottom:8px;}
+  .news-preview{color:var(--muted);font-size:.84rem;line-height:1.6;flex:1;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .news-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+  .news-date{color:var(--muted);font-size:.76rem;}
+  .read-more-btn{
+    background:var(--green-light);color:var(--green-dark);
+    border:1px solid var(--green-mid);border-radius:5px;
+    padding:5px 12px;font-size:.78rem;font-weight:700;
+    cursor:pointer;transition:.15s;font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .read-more-btn:hover{background:var(--green);color:#fff;border-color:var(--green);}
+
+  /* MODAL */
+  .modal-overlay{
+    position:fixed;inset:0;z-index:500;
+    background:rgba(0,0,0,.55);
+    display:flex;align-items:center;justify-content:center;
+    padding:20px;
+    opacity:0;pointer-events:none;transition:.25s;
+  }
+  .modal-overlay.open{opacity:1;pointer-events:all;}
+  .modal{
+    background:#fff;border-radius:14px;
+    max-width:640px;width:100%;max-height:88vh;overflow-y:auto;
+    transform:translateY(24px) scale(.97);transition:.25s;
+  }
+  .modal-overlay.open .modal{transform:translateY(0) scale(1);}
+  .modal-img{width:100%;height:240px;object-fit:cover;border-radius:14px 14px 0 0;display:block;}
+  .modal-img-placeholder{
+    width:100%;height:240px;border-radius:14px 14px 0 0;
+    background:linear-gradient(135deg,var(--green-mid),#bbf7d0);
+    display:flex;align-items:center;justify-content:center;font-size:5rem;
+  }
+  .modal-body{padding:28px;}
+  .modal-meta{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+  .modal-title{font-size:1.3rem;font-weight:800;line-height:1.3;color:var(--text);margin-bottom:14px;}
+  .modal-text{color:var(--muted);font-size:.95rem;line-height:1.75;}
+  .modal-close{
+    position:absolute;top:14px;right:14px;
+    background:#fff;border:1px solid var(--border);
+    width:34px;height:34px;border-radius:50%;
+    font-size:1.1rem;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:.15s;z-index:10;
+  }
+  .modal-close:hover{background:var(--red);color:#fff;border-color:var(--red);}
+  .modal-wrap{position:relative;}
+
+  /* FOOTER */
+  footer{
+    background:#fff;border-top:1px solid var(--border);
+    text-align:center;padding:28px 6%;color:var(--muted);font-size:.85rem;
+  }
+  footer .footer-logo{font-size:1.1rem;font-weight:800;color:var(--green);margin-bottom:6px;}
+  footer a{color:var(--green);text-decoration:none;}
+
+  /* TOAST */
+  .toast{
+    position:fixed;bottom:24px;right:24px;z-index:999;
+    background:#fff;border:1px solid var(--border);border-left:3px solid var(--green);
+    border-radius:8px;padding:12px 18px;font-size:.88rem;font-weight:500;
+    box-shadow:0 4px 16px rgba(0,0,0,.08);
+    transform:translateY(60px);opacity:0;transition:.35s;pointer-events:none;max-width:280px;
+  }
+  .toast.show{transform:translateY(0);opacity:1;}
+
+  @media(max-width:640px){
+    .nav-links{display:none;}
+    section{padding:48px 4%;}
+    .hero{padding:52px 4% 48px;}
+    .giveaway-card{padding:24px 18px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">JAMB<span>Focus</span></a>
+  <ul class="nav-links">
+    <li><a href="#giveaway">🎁 Giveaway</a></li>
+    <li><a href="#quiz">📚 Quiz</a></li>
+    <li><a href="#news">📰 News</a></li>
+  </ul>
+  <a href="#quiz" class="nav-cta">Start Practising</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🇳🇬 Nigeria's #1 JAMB Prep Platform</div>
+  <h1>Ace Your JAMB.<br/><span>Focus. Practice. Win.</span></h1>
+  <p>Practice thousands of JAMB past questions, stay updated with the latest news, and win real cash in our weekly giveaway.</p>
+  <div class="hero-btns">
+    <a href="#quiz" class="btn-green">Start Practising Free</a>
+    <a href="#giveaway" class="btn-white">🏆 Win Cash</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">5,000+</div><div class="stat-label">Past Questions</div></div>
+    <div><div class="stat-num">12</div><div class="stat-label">JAMB Subjects</div></div>
+    <div><div class="stat-num">₦50k</div><div class="stat-label">Given Away</div></div>
+  </div>
+</div>
+
+<!-- GIVEAWAY -->
+<section class="giveaway-section" id="giveaway">
+  <div class="section-header">
+    <div class="section-label">Weekly Giveaway</div>
+    <div class="section-title">The Golden Question 🏆</div>
+    <p class="section-sub">Answer correctly and win real cash — sent straight to your account!</p>
+  </div>
+  <div class="giveaway-card">
+    <span class="icon">👑</span>
+    <h2>This Week's Golden Question</h2>
+    <p class="desc">Read the question carefully, type your answer and tap <strong>Submit on WhatsApp</strong>. Winners are announced every Friday!</p>
+    <div class="q-box">
+      <div class="qlabel">🌟 Golden Question – Week 12</div>
+      <div class="qtext" id="goldenQuestion">In which year did Nigeria officially adopt the JAMB (Joint Admissions and Matriculation Board) as the central body for university admissions?</div>
+    </div>
+    <input class="answer-input" id="giveawayAnswer" type="text" placeholder="Type your answer here..." maxlength="200"/>
+    <button class="btn-submit" onclick="submitGiveaway()">📲 Submit Answer on WhatsApp</button>
+    <p class="giveaway-note">🔒 One entry per person &nbsp;·&nbsp; Prize: <strong>₦5,000</strong> &nbsp;·&nbsp; Winner announced every Friday</p>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz">
+  <div class="section-header">
+    <div class="section-label">Practice Questions</div>
+    <div class="section-title">JAMB Past Questions</div>
+    <p class="section-sub">Pick a subject and test yourself. Answers revealed instantly!</p>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="loadSubject('english',this)">English</button>
+    <button class="tab-btn" onclick="loadSubject('maths',this)">Mathematics</button>
+    <button class="tab-btn" onclick="loadSubject('biology',this)">Biology</button>
+    <button class="tab-btn" onclick="loadSubject('chemistry',this)">Chemistry</button>
+    <button class="tab-btn" onclick="loadSubject('physics',this)">Physics</button>
+    <button class="tab-btn" onclick="loadSubject('govt',this)">Government</button>
+  </div>
+  <div class="quiz-container" id="quizContainer"></div>
+</section>
+
+<!-- NEWS -->
+<section class="news-section" id="news">
+  <div class="section-header">
+    <div class="section-label">Latest Updates</div>
+    <div class="section-title">JAMB News & Education</div>
+    <p class="section-sub">Stay informed. Never miss an important update.</p>
+  </div>
+  <div class="news-grid" id="newsGrid"></div>
+</section>
+
+<!-- NEWS MODAL -->
+<div class="modal-overlay" id="newsModal" onclick="closeModalOutside(event)">
+  <div class="modal modal-wrap" id="modalBox">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">JAMBFocus</div>
+  <p>Nigeria's trusted JAMB preparation platform.</p>
+  <p style="margin-top:6px;">Contact: <a href="https://wa.me/2348000000000">WhatsApp</a> &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#bcd5d2dad3fcd6ddd1dedad3dfc9cf92dfd3d192d2db">Email</a></p>
+  <p style="margin-top:14px;font-size:.78rem;">© 2025 JAMBFocus. All rights reserved. Not officially affiliated with JAMB.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const OWNER_WHATSAPP = '2348000000000'; // ← Change to your number (no + sign)
+
+function submitGiveaway(){
+  const answer = document.getElementById('giveawayAnswer').value.trim();
+  if(!answer){showToast('Please type your answer first!');return;}
+  const question = document.getElementById('goldenQuestion').innerText.trim();
+  const msg = encodeURIComponent(`Hello! JAMBFocus Golden Question Entry 🏆\n\nQuestion: ${question}\n\nMy Answer: ${answer}\n\nName: [Your Name]\nPhone: [Your Number]`);
+  window.open(`https://wa.me/${OWNER_WHATSAPP}?text=${msg}`,'_blank');
+  showToast('Opening WhatsApp — good luck! 🍀');
+}
+
+const quizData = {
+  english:[
+    {q:"Choose the word nearest in meaning to 'EBULLIENT'.",options:["Gloomy","Enthusiastic","Timid","Hostile"],answer:1,exp:"'Ebullient' means cheerful and full of energy — synonymous with Enthusiastic."},
+    {q:"Identify the figure of speech: 'The wind howled through the night.'",options:["Simile","Metaphor","Personification","Hyperbole"],answer:2,exp:"Attributing the human action 'howled' to the wind is Personification."},
+    {q:"Which sentence uses the subjunctive mood correctly?",options:["If I was you, I would leave.","If I were you, I would leave.","If I am you, I would leave.","If I be you, I would leave."],answer:1,exp:"The subjunctive uses 'were' (not 'was') for hypothetical conditions."},
+    {q:"Fill the gap: 'She is one of those women who _____ always on time.'",options:["is","are","was","were"],answer:1,exp:"The clause refers to 'women' (plural), so the verb must be 'are'."},
+  ],
+  maths:[
+    {q:"Simplify: (2³ × 2⁴) ÷ 2⁵",options:["2","4","8","16"],answer:1,exp:"2³ × 2⁴ = 2⁷. Then 2⁷ ÷ 2⁵ = 2² = 4."},
+    {q:"Find x if 3x + 7 = 22.",options:["3","4","5","6"],answer:2,exp:"3x = 15, so x = 5."},
+    {q:"Area of a circle with radius 7cm? (π = 22/7)",options:["44 cm²","154 cm²","77 cm²","22 cm²"],answer:1,exp:"Area = πr² = (22/7) × 49 = 154 cm²."},
+    {q:"If log₁₀ 2 = 0.3010, find log₁₀ 8.",options:["0.6020","0.9030","1.2040","2.4080"],answer:1,exp:"log 8 = log 2³ = 3 × 0.3010 = 0.9030."},
+  ],
+  biology:[
+    {q:"Which organelle is the 'powerhouse of the cell'?",options:["Nucleus","Ribosome","Mitochondria","Golgi Apparatus"],answer:2,exp:"Mitochondria produces ATP energy through cellular respiration."},
+    {q:"Plants making food using sunlight is called:",options:["Respiration","Transpiration","Photosynthesis","Fermentation"],answer:2,exp:"Photosynthesis uses sunlight, water, and CO₂ to produce glucose."},
+    {q:"What is the basic unit of heredity?",options:["Chromosome","Cell","Gene","DNA"],answer:2,exp:"A gene is a segment of DNA that codes for a specific trait."},
+    {q:"Which blood group is the universal donor?",options:["A","B","AB","O"],answer:3,exp:"Blood group O negative lacks A, B, and Rh antigens — universal donor."},
+  ],
+  chemistry:[
+    {q:"What is the chemical symbol for Gold?",options:["Go","Gd","Au","Ag"],answer:2,exp:"Gold's symbol is Au, from the Latin 'Aurum'."},
+    {q:"Electrons in the outermost shell of a carbon atom?",options:["2","4","6","8"],answer:1,exp:"Carbon's electron configuration is 2,4 — 4 electrons in the outer shell."},
+    {q:"Gas produced when acids react with metals?",options:["Oxygen","Carbon dioxide","Hydrogen","Nitrogen"],answer:2,exp:"Hydrogen gas is released. E.g. Zn + H₂SO₄ → ZnSO₄ + H₂↑"},
+    {q:"pH of a neutral solution at 25°C?",options:["0","7","14","1"],answer:1,exp:"Pure water has a pH of exactly 7 at 25°C."},
+  ],
+  physics:[
+    {q:"SI unit of electric current?",options:["Volt","Watt","Ampere","Ohm"],answer:2,exp:"The Ampere (A) is the SI unit of electric current."},
+    {q:"A body in equilibrium has a net force of:",options:["Maximum","Minimum","Zero","Constant"],answer:2,exp:"Equilibrium means the vector sum of all forces equals zero."},
+    {q:"Which is NOT a vector quantity?",options:["Velocity","Displacement","Speed","Acceleration"],answer:2,exp:"Speed is a scalar — magnitude only, no direction."},
+    {q:"Speed of light in a vacuum?",options:["3×10⁶ m/s","3×10⁸ m/s","3×10¹⁰ m/s","3×10⁴ m/s"],answer:1,exp:"Light travels at approximately 3 × 10⁸ m/s in a vacuum."},
+  ],
+  govt:[
+    {q:"Which is a feature of a federal system of government?",options:["Concentration of power","Single legislature","Division of powers","Unicameralism"],answer:2,exp:"Federalism divides powers between central and regional governments."},
+    {q:"The doctrine of separation of powers was popularized by:",options:["John Locke","Karl Marx","Montesquieu","Aristotle"],answer:2,exp:"Montesquieu developed it in 'The Spirit of the Laws' (1748)."},
+    {q:"Nigeria operates a _____ system of government.",options:["Unitary","Confederal","Federal","Parliamentary"],answer:2,exp:"Nigeria is a Federal system with 36 state governments."},
+    {q:"Who heads the judiciary in Nigeria?",options:["The President","Senate President","Chief Justice of Nigeria","Attorney-General"],answer:2,exp:"The Chief Justice of Nigeria is the highest judicial officer."},
+  ],
+};
+
+let currentSubject = 'english';
+function loadSubject(subject, btn){
+  currentSubject = subject;
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderQuiz(subject);
+}
+function renderQuiz(subject){
+  const qs = quizData[subject];
+  const c = document.getElementById('quizContainer');
+  c.innerHTML = '';
+  qs.forEach((q,i)=>{
+    const card = document.createElement('div');
+    card.className='quiz-card'; card.id=`qcard-${i}`;
+    card.innerHTML=`
+      <div class="q-num">Question ${i+1} of ${qs.length}</div>
+      <div class="q-body">${q.q}</div>
+      <div class="options">
+        ${q.options.map((o,j)=>`
+          <label class="option">
+            <input type="radio" name="q${i}" value="${j}"/>
+            <label>${String.fromCharCode(65+j)}. ${o}</label>
+          </label>`).join('')}
+      </div>
+      <button class="check-btn" onclick="checkAnswer(${i})">Check Answer</button>
+      <div class="result-msg" id="result-${i}"></div>
+    `;
+    c.appendChild(card);
+  });
+}
+function checkAnswer(i){
+  const q = quizData[currentSubject][i];
+  const sel = document.querySelector(`input[name="q${i}"]:checked`);
+  const res = document.getElementById(`result-${i}`);
+  const card = document.getElementById(`qcard-${i}`);
+  if(!sel){showToast('Please select an option first!');return;}
+  const chosen = parseInt(sel.value);
+  res.style.display='block';
+  if(chosen===q.answer){
+    res.className='result-msg correct';
+    res.innerHTML=`✅ Correct! <br/><small style="font-weight:400">${q.exp}</small>`;
+    card.style.borderColor='#16a34a';
+  } else {
+    const cl = String.fromCharCode(65+q.answer);
+    res.className='result-msg wrong';
+    res.innerHTML=`❌ Wrong! Correct answer: <strong>${cl}. ${q.options[q.answer]}</strong><br/><small style="font-weight:400">${q.exp}</small>`;
+    card.style.borderColor='#dc2626';
+  }
+  document.querySelectorAll(`input[name="q${i}"]`).forEach(r=>r.disabled=true);
+  const btn=document.querySelector(`#qcard-${i} .check-btn`);
+  btn.disabled=true; btn.style.opacity='.4'; btn.style.cursor='default';
+}
+
+const newsItems=[
+  {
+    tag:'JAMB',cls:'',emoji:'📋',
+    title:'JAMB Releases 2025 UTME Timetable — Everything You Need to Know',
+    date:'Nov 28, 2025',
+    preview:'The Joint Admissions and Matriculation Board has officially released the timetable for the 2025 UTME.',
+    full:`The Joint Admissions and Matriculation Board (JAMB) has officially released the timetable for the 2025 Unified Tertiary Matriculation Examination (UTME). The examination is scheduled to begin in late March 2025 and will run for several weeks across multiple centres nationwide.\n\nAll candidates are advised to log on to the official JAMB portal at jamb.gov.ng to confirm their examination date, time, and centre. It is important to note that no candidate will be allowed to sit the exam without a valid examination slip printed from the portal.\n\nJAMB has also warned against examination malpractice, stating that any candidate caught will be prosecuted. The board encouraged all candidates to prepare adequately using approved past question materials and registered JAMB-accredited tutorial centres.`
+  },
+  {
+    tag:'Education',cls:'edu',emoji:'🎓',
+    title:'Federal Government Increases University Admission Quota by 15%',
+    date:'Nov 25, 2025',
+    preview:'The Federal Ministry of Education has announced a significant increase in university admission slots for Nigerian students.',
+    full:`The Federal Ministry of Education has announced a 15% increase in university admission slots for the 2025/2026 academic session. This decision was reached following pressure from stakeholders who noted that thousands of qualified candidates are turned away from Nigerian universities every year due to limited spaces.\n\nThe Minister of Education stated that the increase is part of a broader education reform agenda, which also includes increasing funding to state universities and upgrading facilities at federal institutions. The new slots will be distributed across all 43 federal universities and will prioritize science, technology, engineering, and mathematics (STEM) courses.\n\nProspective students are advised to aim for a minimum JAMB score of 200 and to also prepare for their respective institutions' Post-UTME screenings, as competition remains high despite the increased quota.`
+  },
+  {
+    tag:'JAMB',cls:'',emoji:'📝',
+    title:'How to Register for JAMB 2025: Complete Step-by-Step Guide',
+    date:'Nov 22, 2025',
+    preview:'Registration for the 2025 UTME is now open. Here is everything you need to know to register successfully.',
+    full:`Registration for the 2025 Unified Tertiary Matriculation Examination (UTME) is now officially open. Here is a step-by-step guide to help you register without stress:\n\n1. Visit the JAMB portal at www.jamb.gov.ng and create a profile if you do not already have one.\n2. Purchase a JAMB e-PIN from any accredited bank or financial institution. The registration fee is ₦3,500.\n3. Log in with your e-PIN and fill in your personal details accurately, including your name as it appears on your NIN.\n4. Select your institution of choice (first and second choice) and your course.\n5. Choose your four JAMB subjects based on your intended course of study.\n6. Upload a recent passport photograph and your signature.\n7. Select your preferred examination centre.\n8. Review all your details carefully and submit your registration.\n\nNote: You will need a valid National Identification Number (NIN) to complete your JAMB registration. Ensure you obtain one before attempting to register.`
+  },
+  {
+    tag:'Tips',cls:'tip',emoji:'💡',
+    title:'Top 10 Study Techniques That JAMB High Scorers Use',
+    date:'Nov 19, 2025',
+    preview:'We interviewed 50 candidates who scored 300+ in JAMB and compiled their most effective study strategies.',
+    full:`After interviewing 50 candidates who scored 300 and above in JAMB, we identified the top 10 study techniques they all had in common:\n\n1. Active Recall — Instead of just rereading notes, they regularly tested themselves on what they had studied.\n2. Spaced Repetition — They reviewed material at increasing intervals rather than cramming the night before.\n3. Past Questions First — Every single top scorer started by going through JAMB past questions from at least the past 10 years.\n4. Subject Scheduling — They assigned specific days to specific subjects rather than mixing everything together.\n5. Short Study Blocks — They studied in 45-minute blocks with 10-minute breaks (the Pomodoro technique).\n6. Group Study (Limited) — They used group study selectively — only to explain concepts to others, which reinforced their own understanding.\n7. Note Summarising — They created their own concise notes instead of relying on textbooks alone.\n8. Eliminating Distractions — Most high scorers locked their phones away during study sessions.\n9. Consistent Sleep — They all maintained 7–8 hours of sleep and avoided pulling all-nighters.\n10. Positive Mindset — They consistently told themselves they were capable of scoring high, and this belief kept them going when studying felt difficult.`
+  },
+  {
+    tag:'JAMB',cls:'',emoji:'📚',
+    title:'JAMB Subject Combination: Which Subjects Should You Pick?',
+    date:'Nov 15, 2025',
+    preview:'Choosing the right JAMB subject combination is crucial for your admission. Here is a full breakdown by course.',
+    full:`One of the most common mistakes JAMB candidates make is choosing the wrong subject combination. Here is a guide to help you pick correctly:\n\nMedicine & Surgery / Pharmacy / Nursing:\nEnglish Language, Biology, Chemistry, Physics\n\nEngineering (all types) / Computer Science:\nEnglish Language, Mathematics, Physics, Chemistry\n\nLaw:\nEnglish Language, Literature-in-English, Government, CRS/IRS (or any Art subject)\n\nAccountancy / Economics / Business Administration:\nEnglish Language, Mathematics, Economics, and one of: Government, Commerce, or Geography\n\nMass Communication / Journalism:\nEnglish Language, Literature-in-English, Government, and one Art or Social Science subject\n\nAgriculture / Agric Economics:\nEnglish Language, Biology, Chemistry, and one of: Physics, Mathematics, or Agriculture\n\nIMPORTANT: Always confirm the subject combination requirements of your specific institution, as universities sometimes have slightly different requirements beyond what JAMB specifies. Check the institution's official website or their post-UTME brochure.`
+  },
+  {
+    tag:'News',cls:'edu',emoji:'🏫',
+    title:'Nigerian Universities 2025 Post-UTME Screening Dates Released',
+    date:'Nov 12, 2025',
+    preview:'Several federal and state universities have released their Post-UTME screening dates. Check if your school is on the list.',
+    full:`Several Nigerian federal and state universities have begun releasing their Post-UTME screening schedules for the 2025/2026 academic session. Below is a summary of what we know so far:\n\nUniversity of Lagos (UNILAG): Screening scheduled for April 2025. Minimum JAMB score: 200.\nUniversity of Ibadan (UI): Screening in May 2025 using an online CBT format. Minimum JAMB score: 220.\nObafemi Awolowo University (OAU): Post-UTME set for April/May 2025. Score requirement: 200+.\nUniversity of Nigeria, Nsukka (UNN): Dates to be announced. Candidates advised to check the portal regularly.\nAhmadu Bello University (ABU): Screening for May 2025 via direct entry and UTME. Score requirement: 180+.\n\nCandidates are strongly advised to:\n- Register for Post-UTME only for institutions where your JAMB score meets the cut-off.\n- Avoid paying for multiple Post-UTMEs at institutions where your score is too low.\n- Check your institution's official website for updates, as dates may change.\n\nStay tuned to JAMBFocus for the latest updates as more universities release their screening dates.`
+  },
+];
+
+function renderNews(){
+  const g=document.getElementById('newsGrid');
+  newsItems.forEach((n,i)=>{
+    const card=document.createElement('div');
+    card.className='news-card';
+    card.innerHTML=`
+      <div class="news-img-placeholder">${n.emoji}</div>
+      <div class="news-body">
+        <span class="news-tag ${n.cls}">${n.tag}</span>
+        <h3>${n.title}</h3>
+        <p class="news-preview">${n.preview}</p>
+        <div class="news-footer">
+          <span class="news-date">📅 ${n.date}</span>
+          <button class="read-more-btn" onclick="openModal(${i})">Read More →</button>
+        </div>
+      </div>
+    `;
+    g.appendChild(card);
+  });
+}
+
+function openModal(i){
+  const n = newsItems[i];
+  const paragraphs = n.full.split('\n\n').map(p=>`<p style="margin-bottom:14px">${p.replace(/\n/g,'<br/>')}</p>`).join('');
+  document.getElementById('modalContent').innerHTML=`
+    <div class="modal-img-placeholder">${n.emoji}</div>
+    <div class="modal-body">
+      <div class="modal-meta">
+        <span class="news-tag ${n.cls}">${n.tag}</span>
+        <span class="news-date">📅 ${n.date}</span>
+      </div>
+      <div class="modal-title">${n.title}</div>
+      <div class="modal-text">${paragraphs}</div>
+    </div>
+  `;
+  document.getElementById('newsModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('newsModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeModalOutside(e){
+  if(e.target===document.getElementById('newsModal')) closeModal();
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show';
+  setTimeout(()=>t.className='toast',3000);
+}
+
+renderQuiz('english');
+renderNews();
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();});
+</script>
+</body>
+</html>
